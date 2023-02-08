@@ -1,8 +1,5 @@
 # s3parcp [![Latest Version](https://img.shields.io/github/release/chanzuckerberg/s3parcp.svg?style=flat?maxAge=86400)](https://github.com/chanzuckerberg/s3parcp/releases) ![Check](https://github.com/chanzuckerberg/s3parcp/workflows/Check/badge.svg) [![codecov](https://codecov.io/gh/chanzuckerberg/s3parcp/branch/main/graph/badge.svg)](https://codecov.io/gh/chanzuckerberg/s3parcp) [![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/chanzuckerberg/idseq-web/blob/master/LICENSE) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
 
----
-Awesome
----
 
 s3parcp is a CLI wrapper around [AWS's Go SDK's Downloader](https://docs.aws.amazon.com/sdk-for-go/api/service/s3/s3manager/#NewDownloader). This downloader provides a chunked parallel download implementation from s3 offering speeds faster than [s3cp](https://github.com/aboisvert/s3cp). The API is inspired by `cp`.
 
@@ -150,3 +147,12 @@ s3parcp --checksum s3://my-bucket/my-object my/new/local/file
 ### checksum
 
 This tool comes with a parallelized crc32c checksum validator. The AWS SDK does not support checksums for multipart downloads. If you include the `--checksum` flag when uploading a checksum of your file will be computed and stored in the object's metadata in s3 with the key `x-amz-meta-crc32c-checksum`. When downloading, the `--checksum` flag will compute an independent crc32c checksum of the downloaded file and compare it of the checksum in the object's metadata.
+
+
+
+### How to release  
+https://goreleaser.com/quick-start/
+
+export GITHUB_TOKEN="YOUR_GH_TOKEN"
+git tag -a v0.1.0 -m "First release"
+git push origin v0.1.0
